@@ -7,4 +7,5 @@ target/
 *.iml
 *.ipr
 *.iws
+classes/
 appengine-web.xml
