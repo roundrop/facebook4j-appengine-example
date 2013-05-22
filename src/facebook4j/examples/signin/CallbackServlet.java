@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CallbackServlet extends HttpServlet {
@@ -14,10 +15,13 @@ public class CallbackServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Facebook facebook = (Facebook) request.getSession().getAttribute("facebook");
+        HttpSession session = request.getSession();
+        Facebook facebook = (Facebook) session.getAttribute("facebook");
         String oauthCode = request.getParameter("code");
         try {
             facebook.getOAuthAccessToken(oauthCode);
+            session.setAttribute("name", facebook.getName());
+            session.setAttribute("id", facebook.getId());
         } catch (FacebookException e) {
             throw new ServletException(e);
         }

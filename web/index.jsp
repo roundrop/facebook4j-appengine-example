@@ -11,7 +11,7 @@
   <a href="signin">Sign in with Facebook</a>
 </tag:notloggedin>
 <tag:loggedin>
-  <h1>Welcome ${facebook.name} (${facebook.id})</h1>
+  <h1>Welcome ${name} (${id})</h1>
   <form action="./post" method="post">
     <textarea cols="80" rows="2" name="message"></textarea>
     <input type="submit" name="post" value="statuses" />
